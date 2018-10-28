@@ -5,9 +5,9 @@ package org.wahlzeit.model;
  */
 public class Coordinate {
     // cartesian coordinates
-    private double x;
-    private double y;
-    private double z;
+    private final double x;
+    private final double y;
+    private final double z;
 
     public Coordinate(double x, double y, double z) {
         this.x = x;
