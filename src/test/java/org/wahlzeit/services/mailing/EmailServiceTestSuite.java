@@ -17,15 +17,13 @@
  * <http://www.gnu.org/licenses/>.
  */
 
-package org.wahlzeit.services;
+package org.wahlzeit.services.mailing;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.wahlzeit.services.mailing.EmailServiceTest;
 
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-    EmailAddressTest.class,
     EmailServiceTest.class,
 })
 public class EmailServiceTestSuite {}

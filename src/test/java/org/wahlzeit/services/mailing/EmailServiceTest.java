@@ -57,4 +57,26 @@ public class EmailServiceTest {
 			Assert.fail("Silent mode does not allow exceptions");
 		}
 	}
+
+	@Test
+	public void testSendAddressToStrangeAddresses() {
+		// excerpt from https://en.wikipedia.org/wiki/Email_address#Examples
+		EmailAddress strangeAddresses[] = {
+			EmailAddress.getFromString("user.name+tag+sorting@example.com"),
+			EmailAddress.getFromString("\" \"@example.org"),
+			EmailAddress.getFromString("A@b@c@example.com"),
+			EmailAddress.getFromString("just\"not\"right@example.com"),
+			EmailAddress.getFromString("a\"b(c)d,e:f;g<h>i[j\\k]l@example.com"),
+			EmailAddress.getFromString("this is\"not\\allowed@example.com"),
+			EmailAddress.getFromString("this\\ still\\\"not\\\\allowed@example.com"),
+		};
+
+		try {
+			for (EmailAddress address : strangeAddresses) {
+				emailService.sendEmailIgnoreException(address, null, "test mail", address.toString());
+			}
+		} catch (Exception ex) {
+			Assert.fail("Silent mode does not allow exceptions");
+		}
+	}
 }
