@@ -22,6 +22,11 @@ package org.wahlzeit.services;
 
 import junit.framework.TestCase;
 
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+
+import static org.junit.Assert.assertNotEquals;
+
 /**
  * Test cases for the EmailAddress class.
  */
@@ -66,5 +71,74 @@ public class EmailAddressTest extends TestCase {
 		assertFalse(EmailAddress.EMPTY.isValid());
 	}
 
+	/**
+	 *
+	 */
+	public void testIsEqual() {
+		final String addr0 = "test@test.com";
+		final String addr1 = "test@test.net";
+		final String addr2 = "admin@test.net";
+
+		final EmailAddress ea0 = new EmailAddress(addr0);
+		final EmailAddress ea1 = new EmailAddress(addr1);
+		final EmailAddress ea2 = new EmailAddress(addr2);
+
+		assertEquals(ea0, ea0);
+		assertNotEquals(ea0, ea1);
+		assertNotEquals(ea0, ea2);
+		assertNotEquals(ea1, ea2);
+	}
+
+	/**
+	 *
+	 */
+	public void testAsString() {
+		final String addr0 = "test@test.com";
+		final String addr1 = "test@test.net";
+		final String addr2 = "admin@test.net";
+
+		final EmailAddress ea0 = new EmailAddress(addr0);
+		final EmailAddress ea1 = new EmailAddress(addr1);
+		final EmailAddress ea2 = new EmailAddress(addr2);
+
+		assertEquals(ea0.asString(), addr0);
+		assertEquals(ea1.asString(), addr1);
+		assertEquals(ea2.asString(), addr2);
+	}
+
+	/**
+	 *
+	 */
+	public void testAsInternetAddress() throws AddressException {
+		final InternetAddress addr0 = new InternetAddress("test@test.com");
+		final InternetAddress addr1 = new InternetAddress("test@test.net");
+		final InternetAddress addr2 = new InternetAddress("admin@test.net");
+
+		final EmailAddress ea0 = new EmailAddress(addr0.toString());
+		final EmailAddress ea1 = new EmailAddress(addr1.toString());
+		final EmailAddress ea2 = new EmailAddress(addr2.toString());
+
+		assertEquals(ea0.asInternetAddress(), addr0);
+		assertEquals(ea1.asInternetAddress(), addr1);
+		assertEquals(ea2.asInternetAddress(), addr2);
+	}
+
+	public void testIsValid() {
+		final String addr0 = "test@test.com";
+		final String addr1 = "test@test.net";
+		final String addr2 = "admin@test.net";
+
+		final EmailAddress ea0 = new EmailAddress(addr0);
+		final EmailAddress ea1 = new EmailAddress(addr1);
+		final EmailAddress ea2 = new EmailAddress(addr2);
+
+		assertTrue(ea0.isValid());
+		assertTrue(ea1.isValid());
+		assertTrue(ea2.isValid());
+
+		final EmailAddress invalidEa = EmailAddress.EMPTY;
+
+		assertFalse(invalidEa.isValid());
+	}
 }
 
