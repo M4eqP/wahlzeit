@@ -77,14 +77,14 @@ public class PhotoManager extends ObjectManager {
 	}
 
 	/**
-	 * @methodtype booleanquery
+	 * @methodtype boolean-query
 	 */
 	public final boolean hasPhoto(String id) {
 		return hasPhoto(PhotoId.getIdFromString(id));
 	}
 
 	/**
-	 * @methodtype booleanquery
+	 * @methodtype boolean-query
 	 */
 	public final boolean hasPhoto(PhotoId id) {
 		return getPhoto(id) != null;
