@@ -45,6 +45,10 @@ import org.wahlzeit.utils.*;
     TagsTest.class,
     UserStatusTest.class,
     ValueTest.class,
+    ChestnutPhotoFactoryTest.class,
+    ChestnutPhotoManagerTest.class,
+    ChestnutCompositionTest.class,
+    ChestnutPhotoTest.class,
 
     // utils tests
     StringUtilTest.class,
