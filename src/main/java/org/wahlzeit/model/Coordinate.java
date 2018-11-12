@@ -28,6 +28,12 @@ public class Coordinate {
     private final double y;
     private final double z;
 
+    /**
+     * @methodtype constructor
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param z z coordinate
+     */
     public Coordinate(double x, double y, double z) {
         this.x = x;
         this.y = y;
@@ -35,6 +41,7 @@ public class Coordinate {
     };
 
     /**
+     * @methodtype get
      * Returns coordinate's X value
      * @return X value
      */
@@ -43,6 +50,7 @@ public class Coordinate {
     }
 
     /**
+     * @methodtype get
      * Returns coordinate's Y value
      * @return Y value
      */
@@ -51,6 +59,7 @@ public class Coordinate {
     }
 
     /**
+     * @methodtype get
      * Returns coordinate's Z value
      * @return Z value
      */
@@ -59,6 +68,7 @@ public class Coordinate {
     }
 
     /**
+     * @methodtype boolean-query
      * Checks whether two coordinates are equal.
      * @param other another Coordinate
      * @return if other Coordinate is equal with this one
@@ -68,6 +78,7 @@ public class Coordinate {
     }
 
     /**
+     * @methodtype compare
      * Checks whether two coordinates are equal.
      * @param other another Coordinate
      * @return true if both are equal, false otherwise
@@ -79,6 +90,7 @@ public class Coordinate {
     /**
      * Calculates direct cartesian distance between two coordinates.
      *
+     * @methodytpe helper
      * @param other another Coordinate
      * @return distance between current and other coordinate
      */

@@ -25,6 +25,7 @@ public class Location {
     /**
      * Construct new Location from existing Coordinate.
      *
+     * @methodtype constructor
      * @param coordinate coordinate
      */
     public Location(Coordinate coordinate) {
@@ -34,6 +35,7 @@ public class Location {
     /**
      * Construct new Location from X, Y and Z values.
      *
+     * @methodtype constructor
      * @param x coordinate's X value
      * @param y coordinate's Y value
      * @param z coordinate's Z value
@@ -45,6 +47,7 @@ public class Location {
     /**
      * Get coordinate of Location.
      *
+     * @methodtype get
      * @return this Location's coordinate
      */
     public Coordinate getCoordinate() {
