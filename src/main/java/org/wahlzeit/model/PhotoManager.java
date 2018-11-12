@@ -50,7 +50,7 @@ public class PhotoManager extends ObjectManager {
 	 */
 	protected static final PhotoManager instance = new PhotoManager();
 
-	private static final Logger log = Logger.getLogger(PhotoManager.class.getName());
+	protected static final Logger log = Logger.getLogger(PhotoManager.class.getName());
 
 	/**
 	 * In-memory cache for photos
@@ -63,42 +63,42 @@ public class PhotoManager extends ObjectManager {
 	protected PhotoTagCollector photoTagCollector = null;
 
 	/**
-	 *
+	 * @methodtype constructor
 	 */
 	public PhotoManager() {
 		photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
 	}
 
 	/**
-	 *
+	 * @methodtype factory
 	 */
 	public static final PhotoManager getInstance() {
 		return instance;
 	}
 
 	/**
-	 *
+	 * @methodtype booleanquery
 	 */
 	public final boolean hasPhoto(String id) {
 		return hasPhoto(PhotoId.getIdFromString(id));
 	}
 
 	/**
-	 *
+	 * @methodtype booleanquery
 	 */
 	public final boolean hasPhoto(PhotoId id) {
 		return getPhoto(id) != null;
 	}
 
 	/**
-	 *
+	 * @methodtype factory
 	 */
 	public final Photo getPhoto(PhotoId id) {
 		return instance.getPhotoFromId(id);
 	}
 
 	/**
-	 *
+	 * @methodtype factory
 	 */
 	public Photo getPhotoFromId(PhotoId id) {
 		if (id == null) {
