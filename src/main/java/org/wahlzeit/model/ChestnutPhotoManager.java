@@ -34,7 +34,7 @@ public class ChestnutPhotoManager extends PhotoManager {
      */
     public ChestnutPhotoManager(PhotoFactory factory) {
         super(factory);
-        photoTagCollector = SingletonManager.getPhotoFactory().createPhotoTagCollector();
+        photoTagCollector = factory.createPhotoTagCollector();
     }
 
     /**
