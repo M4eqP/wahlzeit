@@ -29,13 +29,8 @@ public class ChestnutPhotoManagerTest {
         Caused by: java.lang.NullPointerException: No API environment is registered for this thread.
     @Test
     public void testConstructor() {
-        ChestnutPhotoManager manager = new ChestnutPhotoManager();
-    }
-
-    @Test
-    public void testGetInstance() {
-        PhotoManager manager = ChestnutSingletonManager.getPhotoManager();
-        assertNotSame(manager, null);
+        PhotoFactory factory = new PhotoFactory();
+        ChestnutPhotoManager manager = new ChestnutPhotoManager(factory);
     }
     */
 
