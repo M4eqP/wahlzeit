@@ -64,4 +64,14 @@ public class SingletonManager {
 
         photoFactory = factory;
     }
+
+    /**
+     * @methodtype factory
+     *
+     * Explicitly initializes photo factory object.
+     */
+    public static void initPhotoFactory() {
+        // getter initializes object, so we can just call it and discard the result
+        getPhotoFactory();
+    }
 }
