@@ -49,6 +49,7 @@ import org.wahlzeit.utils.*;
     ChestnutPhotoManagerTest.class,
     ChestnutCompositionTest.class,
     ChestnutPhotoTest.class,
+    SingletonManagerTest.class,
 
     // utils tests
     StringUtilTest.class,
