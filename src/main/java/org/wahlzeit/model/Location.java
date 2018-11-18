@@ -41,7 +41,8 @@ public class Location {
      * @param z coordinate's Z value
      */
     public Location(double x, double y, double z) {
-        this.coordinate = new Coordinate(x, y, z);
+        // currently, only an implementation for cartesian coordinates is available
+        this.coordinate = new CartesianCoordinate(x, y, z);
     }
 
     /**

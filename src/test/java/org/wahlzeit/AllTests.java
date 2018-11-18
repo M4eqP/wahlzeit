@@ -36,7 +36,7 @@ import org.wahlzeit.utils.*;
     // model tests
     DatastoreAdapterTest.class,
     AccessRightsTest.class,
-    CoordinateTest.class,
+    CartesianCoordinateTest.class,
     FlagReasonTest.class,
     GenderTest.class,
     GuestTest.class,
