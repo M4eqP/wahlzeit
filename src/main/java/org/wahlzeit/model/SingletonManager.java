@@ -42,7 +42,7 @@ public class SingletonManager {
     public static PhotoManager getPhotoManager() {
         if (photoManager == null) {
             // using dependency injection to allow unit test to create new instances of the classes
-            photoManager = new PhotoManager(getPhotoFactory());
+            photoManager = new ChestnutPhotoManager(getPhotoFactory());
         }
 
         return photoManager;
@@ -50,8 +50,8 @@ public class SingletonManager {
 
     public static PhotoFactory getPhotoFactory() {
         if (photoFactory == null) {
-            log.config(LogBuilder.createSystemMessage().addAction("setting generic PhotoFactory").toString());
-            setPhotoFactory(new PhotoFactory());
+            log.config(LogBuilder.createSystemMessage().addAction("setting generic ChestnutPhotoFactory").toString());
+            setPhotoFactory(new ChestnutPhotoFactory());
         }
 
         return photoFactory;
@@ -62,6 +62,7 @@ public class SingletonManager {
             throw new IllegalStateException("attempt to initalize PhotoFactory twice");
         }
 
+        log.config(LogBuilder.createSystemMessage().addAction("setting custom ChestnutPhotoFactory").toString());
         photoFactory = factory;
     }
 
