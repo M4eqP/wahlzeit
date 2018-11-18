@@ -34,7 +34,7 @@ public class ChestnutPhotoManagerTest {
 
     @Test
     public void testGetInstance() {
-        PhotoManager manager = ChestnutPhotoManager.getInstance();
+        PhotoManager manager = ChestnutSingletonManager.getPhotoManager();
         assertNotSame(manager, null);
     }
     */

@@ -45,10 +45,8 @@ import java.util.logging.Logger;
  */
 public class PhotoManager extends ObjectManager {
 
-	/**
-	 *
-	 */
-	protected static final PhotoManager instance = new PhotoManager();
+	// injected through constructor
+	protected final PhotoFactory photoFactory;
 
 	protected static final Logger log = Logger.getLogger(PhotoManager.class.getName());
 
@@ -64,16 +62,17 @@ public class PhotoManager extends ObjectManager {
 
 	/**
 	 * @methodtype constructor
+	 *
+	 * package-local constructor to force users to use the SingletonManager
+	 *
+	 * using dependency injection to allow unit test to create new instances of PhotoManager and PhotoFactory
 	 */
-	public PhotoManager() {
-		photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
-	}
+	PhotoManager(PhotoFactory factory) {
+		if (factory == null)
+			throw new IllegalArgumentException("factory must not be null");
 
-	/**
-	 * @methodtype factory
-	 */
-	public static final PhotoManager getInstance() {
-		return instance;
+		photoFactory = factory;
+		photoTagCollector = factory.createPhotoTagCollector();
 	}
 
 	/**
@@ -94,7 +93,7 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype factory
 	 */
 	public final Photo getPhoto(PhotoId id) {
-		return instance.getPhotoFromId(id);
+		return getPhotoFromId(id);
 	}
 
 	/**
@@ -108,7 +107,7 @@ public class PhotoManager extends ObjectManager {
 		Photo result = doGetPhotoFromId(id);
 
 		if (result == null) {
-			result = PhotoFactory.getInstance().loadPhoto(id);
+			result = photoFactory.loadPhoto(id);
 			if (result != null) {
 				doAddPhoto(result);
 			}

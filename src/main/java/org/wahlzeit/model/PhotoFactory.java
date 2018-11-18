@@ -29,47 +29,13 @@ import java.util.logging.Logger;
  */
 public class PhotoFactory {
 
-	private static final Logger log = Logger.getLogger(PhotoFactory.class.getName());
 	/**
-	 * Hidden singleton instance; needs to be initialized from the outside.
-	 */
-	private static PhotoFactory instance = null;
-
-	/**
+	 * @methodtype constructor
 	 *
+	 * package-local constructor to force users to use the SingletonManager
 	 */
-	protected PhotoFactory() {
+	PhotoFactory() {
 		// do nothing
-	}
-
-	/**
-	 * Hidden singleton instance; needs to be initialized from the outside.
-	 */
-	public static void initialize() {
-		getInstance(); // drops result due to getInstance() side-effects
-	}
-
-	/**
-	 * Public singleton access method.
-	 */
-	public static synchronized PhotoFactory getInstance() {
-		if (instance == null) {
-			log.config(LogBuilder.createSystemMessage().addAction("setting generic PhotoFactory").toString());
-			setInstance(new PhotoFactory());
-		}
-
-		return instance;
-	}
-
-	/**
-	 * Method to set the singleton instance of PhotoFactory.
-	 */
-	protected static synchronized void setInstance(PhotoFactory photoFactory) {
-		if (instance != null) {
-			throw new IllegalStateException("attempt to initalize PhotoFactory twice");
-		}
-
-		instance = photoFactory;
 	}
 
 	/**
