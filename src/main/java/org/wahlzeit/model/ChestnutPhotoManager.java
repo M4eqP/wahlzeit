@@ -32,9 +32,9 @@ public class ChestnutPhotoManager extends PhotoManager {
     /**
      * @methodtype constructor
      */
-    public ChestnutPhotoManager() {
-        super();
-        photoTagCollector = ChestnutPhotoFactory.getInstance().createPhotoTagCollector();
+    public ChestnutPhotoManager(PhotoFactory factory) {
+        super(factory);
+        photoTagCollector = SingletonManager.getPhotoFactory().createPhotoTagCollector();
     }
 
     /**
@@ -48,7 +48,7 @@ public class ChestnutPhotoManager extends PhotoManager {
         Photo result = doGetPhotoFromId(id);
 
         if (result == null) {
-            result = ChestnutPhotoFactory.getInstance().loadPhoto(id);
+            result = SingletonManager.getPhotoFactory().loadPhoto(id);
             if (result != null) {
                 doAddPhoto(result);
             }
