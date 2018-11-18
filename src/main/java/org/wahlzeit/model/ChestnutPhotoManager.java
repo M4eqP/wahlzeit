@@ -27,8 +27,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class ChestnutPhotoManager extends PhotoManager {
-    public final ChestnutPhotoManager instance = new ChestnutPhotoManager();
-
     /**
      * @methodtype constructor
      */
