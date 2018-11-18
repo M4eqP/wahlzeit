@@ -2,7 +2,6 @@ package org.wahlzeit.servlets;
 
 import com.google.appengine.api.images.Image;
 import org.apache.http.HttpStatus;
-import org.wahlzeit.model.ChestnutPhotoManager;
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoManager;
 import org.wahlzeit.model.PhotoSize;
@@ -69,7 +68,7 @@ public class StaticDataServlet extends AbstractServlet {
 	 */
 	private Image getImage(String photoId, int size) {
 		Image image = null;
-		Photo photo = ChestnutPhotoManager.getInstance().getPhoto(photoId);
+		Photo photo = PhotoManager.getInstance().getPhoto(photoId);
 		if (photo != null) {
 			PhotoSize photoSize = PhotoSize.getFromInt(size);
 			image = photo.getImage(photoSize);
