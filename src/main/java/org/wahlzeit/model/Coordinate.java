@@ -29,9 +29,19 @@ interface Coordinate {
     public CartesianCoordinate asCartesianCoordinate();
 
     /**
+     * @methodtype conversion
+     */
+    public SphericCoordinate asSphericCoordinate();
+
+    /**
      * @methodtype helper
      */
     public double getCartesianDistance(Coordinate other);
+
+    /**
+     * @methodtype helper
+     */
+    public double getCentralAngle(Coordinate other);
 
     /**
      * @methodtype boolean-query
