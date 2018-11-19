@@ -120,4 +120,19 @@ public class CartesianCoordinate implements Coordinate {
         // As we are in the CartesianCoordinate class body, we can just return the current instance
         return this;
     }
+
+    /**
+     * "Convert" current instance into SphericCoordinate
+     *
+     * @methodtype conversion
+     */
+    public SphericCoordinate asSphericCoordinate() {
+        // calculate radius, phi and theta values from own values
+        double radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+        double theta = Math.acos(z / radius);
+        double phi = Math.atan2(y, x);
+
+        // use these values to construct new SphericCoordinate
+        return new SphericCoordinate(phi, theta, radius);
+    }
 }

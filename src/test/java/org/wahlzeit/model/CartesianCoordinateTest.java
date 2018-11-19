@@ -57,4 +57,14 @@ public class CartesianCoordinateTest {
         assertEquals(20, c1.getY(), 0.000001);
         assertEquals(30, c1.getZ(), 0.000001);
     }
+
+    @Test
+    public void testConversionFromAndToSphericCoordinate() {
+        CartesianCoordinate c1 = new CartesianCoordinate(10, 20 ,30);
+        CartesianCoordinate c2 = c1.asSphericCoordinate().asCartesianCoordinate();
+
+        assertEquals(c1.getX(), c2.getX(), 0.000001);
+        assertEquals(c1.getY(), c2.getY(), 0.000001);
+        assertEquals(c1.getZ(), c2.getZ(), 0.000001);
+    }
 }
