@@ -43,11 +43,12 @@ public class SphericCoordinateTest {
         SphericCoordinate c2 = new SphericCoordinate(1, 1, 1);
         SphericCoordinate c3 = new SphericCoordinate(1, 2, 3);
 
-//        assertEquals(0.0, c1.getCartesianDistance(c1), 0.000001);
-//        assertEquals(Math.sqrt(3), c1.getCartesianDistance(c2), 0.000001);
-//        assertEquals(Math.sqrt(14), c1.getCartesianDistance(c3), 0.000001);
-//
-//        assertEquals(Math.sqrt(5), c2.getCartesianDistance(c3), 0.000001);
+        assertEquals(0.0, c1.getCentralAngle(c1), 0.000001);
+
+        assertEquals(0.8692655149272476, c1.getCentralAngle(c2), 0.000001);
+        assertEquals(1.7826756004986242, c1.getCentralAngle(c3), 0.000001);
+
+        assertEquals(1.0, c2.getCentralAngle(c3), 0.000001);
     }
 
     @Test
