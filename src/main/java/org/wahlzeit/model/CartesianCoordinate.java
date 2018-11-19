@@ -92,10 +92,11 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     /**
-     * Calculates direct cartesian distance between two coordinates.
+     * Calculates direct cartesian distance between two cartesian coordinates.
+     * Will convert other coordinate automatically, if necessary.
      *
      * @methodytpe helper
-     * @param other another CartesianCoordinate
+     * @param other another Coordinate
      * @return distance between current and other coordinate
      */
     public double getCartesianDistance(Coordinate other) {
