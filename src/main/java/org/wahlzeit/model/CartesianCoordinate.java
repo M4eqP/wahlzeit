@@ -112,6 +112,19 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     /**
+     * Calculates central angle between two spherical coordinates.
+     * Will convert current coordinate into spheric one and then perform calculation as implemented in that class.
+     *
+     * @methodtype helper
+     * @param other another Coordinate
+     * @return central angle between current and other coordinate
+     */
+    public double getCentralAngle(Coordinate other) {
+        // convert current instance into SphericCoordinate, then we can simply call the function there
+        return this.asSphericCoordinate().getCentralAngle(other);
+    }
+
+    /**
      * "Convert" current instance into CartesianCoordinate
      *
      * @methodtype conversion
