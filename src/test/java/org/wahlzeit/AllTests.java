@@ -50,6 +50,7 @@ import org.wahlzeit.utils.*;
     ChestnutCompositionTest.class,
     ChestnutPhotoTest.class,
     SingletonManagerTest.class,
+    SphericCoordinateTest.class,
 
     // utils tests
     StringUtilTest.class,
