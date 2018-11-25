@@ -22,7 +22,7 @@ package org.wahlzeit.model;
 /**
  * Represents cartesian coordinate.
  */
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate {
     // cartesian coordinates
     private final double x;
     private final double y;
@@ -65,63 +65,6 @@ public class CartesianCoordinate implements Coordinate {
      */
     public double getZ() {
         return z;
-    }
-
-    /**
-     * @methodtype boolean-query
-     * Checks whether two coordinates are equal.
-     * @param other another CartesianCoordinate
-     * @return if other CartesianCoordinate is equal with this one
-     */
-    public boolean isEqual(Coordinate other) {
-        // need a CartesianCoordinate to be able to access x, y, z values
-        // also, the function call will implicitly reinterpret the original values into Cartesian coordinates
-        CartesianCoordinate cartesianOther = other.asCartesianCoordinate();
-
-        return this.x == cartesianOther.x && this.y == cartesianOther.y && this.z == cartesianOther.z;
-    }
-
-    /**
-     * @methodtype compare
-     * Checks whether two coordinates are equal.
-     * @param other another CartesianCoordinate
-     * @return true if both are equal, false otherwise
-     */
-    public boolean equals(Coordinate other) {
-        return isEqual(other);
-    }
-
-    /**
-     * Calculates direct cartesian distance between two cartesian coordinates.
-     * Will convert other coordinate automatically, if necessary.
-     *
-     * @methodytpe helper
-     * @param other another Coordinate
-     * @return distance between current and other coordinate
-     */
-    public double getCartesianDistance(Coordinate other) {
-        // need a CartesianCoordinate to be able to access x, y, z values
-        // also, the function call will implicitly reinterpret the original values into Cartesian coordinates
-        CartesianCoordinate cartesianOther = other.asCartesianCoordinate();
-
-        double xDiff = Math.abs(cartesianOther.x - this.x);
-        double yDiff = Math.abs(cartesianOther.y - this.y);
-        double zDiff = Math.abs(cartesianOther.z - this.z);
-
-        return Math.abs(Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2) + Math.pow(zDiff, 2)));
-    }
-
-    /**
-     * Calculates central angle between two spherical coordinates.
-     * Will convert current coordinate into spheric one and then perform calculation as implemented in that class.
-     *
-     * @methodtype helper
-     * @param other another Coordinate
-     * @return central angle between current and other coordinate
-     */
-    public double getCentralAngle(Coordinate other) {
-        // convert current instance into SphericCoordinate, then we can simply call the function there
-        return this.asSphericCoordinate().getCentralAngle(other);
     }
 
     /**

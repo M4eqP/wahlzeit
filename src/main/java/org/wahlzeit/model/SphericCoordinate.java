@@ -22,7 +22,7 @@ package org.wahlzeit.model;
 /**
  * Represents cartesian coordinate.
  */
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
     // cartesian coordinates
     private final double phi;
     private final double theta;
@@ -75,73 +75,6 @@ public class SphericCoordinate implements Coordinate {
      */
     public double getRadius() {
         return radius;
-    }
-
-    /**
-     * @methodtype boolean-query
-     * Checks whether two coordinates are equal.
-     * @param other another CartesianCoordinate
-     * @return if other CartesianCoordinate is equal with this one
-     */
-    public boolean isEqual(Coordinate other) {
-        // need a SphericCoordinate to be able to access phi, theta and radius values
-        // also, the function call will implicitly reinterpret the original values into spheric coordinates
-        SphericCoordinate sphericOther = other.asSphericCoordinate();
-
-        return this.phi == sphericOther.phi && this.theta == sphericOther.theta && this.radius == sphericOther.radius;
-    }
-
-    /**
-     * @methodtype compare
-     * Checks whether two coordinates are equal.
-     * @param other an ther CartesianCoordinate
-     * @return true if both are equal, false otherwise
-     */
-    public boolean equals(Coordinate other) {
-        return isEqual(other);
-    }
-
-    /**
-     * Calculates direct cartesian distance between two cartesian coordinates.
-     * Will convert current coordinate into Cartesian one and then perform calculation as implemented in that class.
-     *
-     * @methodytpe helper
-     * @param other another Coordinate
-     * @return distance between current and other coordinate
-     */
-    public double getCartesianDistance(Coordinate other) {
-        // convert current instance into CartesianCoordinate, then we can simply call the function there
-        return asCartesianCoordinate().getCartesianDistance(other);
-    }
-
-    /**
-     * Calculates central angle between two spherical coordinates.
-     * Will convert other coordinate automatically, if necessary.
-     *
-     * @methodtype helper
-     * @param other another Coordinate
-     * @return central angle between current and other coordinate
-     */
-    public double getCentralAngle(Coordinate other) {
-        // convert current instance into SphericCoordinate, if necessary
-        SphericCoordinate sphericOther = other.asSphericCoordinate();
-
-        // calculate latitudes and longtitudes for both coordinates
-        // latitude = (90 - θ)
-        // longtitude = ϕ
-        double lat1 = 90 - getTheta();
-        double lat2 = 90 - sphericOther.getTheta();
-        double lon1 = getPhi();
-        double lon2 = sphericOther.getPhi();
-
-        // https://en.wikipedia.org/wiki/Great-circle_distance#Formulas
-        double delta_lon = Math.abs(lon2 - lon1);
-
-        double delta_sigma = Math.acos(
-            Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(delta_lon)
-        );
-
-        return delta_sigma;
     }
 
     /**
