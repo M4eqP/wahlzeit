@@ -26,25 +26,25 @@ interface Coordinate {
     /**
      * @methodtype conversion
      */
-    public CartesianCoordinate asCartesianCoordinate();
+    CartesianCoordinate asCartesianCoordinate();
 
     /**
      * @methodtype conversion
      */
-    public SphericCoordinate asSphericCoordinate();
+    SphericCoordinate asSphericCoordinate();
 
     /**
      * @methodtype helper
      */
-    public double getCartesianDistance(Coordinate other);
+    double getCartesianDistance(Coordinate other);
 
     /**
      * @methodtype helper
      */
-    public double getCentralAngle(Coordinate other);
+    double getCentralAngle(Coordinate other);
 
     /**
      * @methodtype boolean-query
      */
-    public boolean isEqual(Coordinate other);
+    boolean isEqual(Coordinate other);
 }
