@@ -24,6 +24,18 @@ package org.wahlzeit.model;
  */
 public abstract class AbstractCoordinate implements Coordinate {
     /**
+     * Checks whether object is in a valid state.
+     *
+     * @methodtype assertation
+     */
+    protected void assertClassInvariants() {
+        // the abstract class doesn't store any state itself
+        // the only check we could apply is to verify that the object can be compared to itself
+        if (!isEqual(this))
+            throw new IllegalStateException();
+    }
+
+    /**
      * "Convert" object into CartesianCoordinate
      *
      * @methodtype conversion
@@ -81,6 +93,8 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return distance between current and other coordinate
      */
     public double getCartesianDistance(Coordinate other) {
+        assertClassInvariants();
+
         // "normalize" both current and other object to cartesian coordinates, and compare the values
         // need a CartesianCoordinate to be able to access x, y, z values
         // also, the function call will implicitly reinterpret the original values into Cartesian coordinates
@@ -91,7 +105,11 @@ public abstract class AbstractCoordinate implements Coordinate {
         double yDiff = Math.abs(cartesianOther.getY() - cartesianThis.getY());
         double zDiff = Math.abs(cartesianOther.getZ() - cartesianThis.getZ());
 
-        return Math.abs(Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2) + Math.pow(zDiff, 2)));
+        double result = Math.abs(Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2) + Math.pow(zDiff, 2)));
+
+        assertClassInvariants();
+
+        return result;
     }
 
     /**
@@ -103,6 +121,8 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return central angle between current and other coordinate
      */
     public double getCentralAngle(Coordinate other) {
+        assertClassInvariants();
+
         // convert current instance into SphericCoordinate, if necessary
         SphericCoordinate sphericThis = asSphericCoordinate();
         SphericCoordinate sphericOther = other.asSphericCoordinate();
@@ -121,6 +141,8 @@ public abstract class AbstractCoordinate implements Coordinate {
         double delta_sigma = Math.acos(
                 Math.sin(lat1) * Math.sin(lat2) + Math.cos(lat1) * Math.cos(lat2) * Math.cos(delta_lon)
         );
+
+        assertClassInvariants();
 
         return delta_sigma;
     }

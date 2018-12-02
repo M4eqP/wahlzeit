@@ -29,6 +29,21 @@ public class SphericCoordinate extends AbstractCoordinate {
     private final double radius;
 
     /**
+     * Checks whether object is in a valid state.
+     *
+     * @methodtype assertation
+     */
+    @Override
+    protected void assertClassInvariants() {
+        // inherit superclass's constraints
+        super.assertClassInvariants();
+
+        // check whether radius is a non-negative floating point numbers
+        if (radius < 0)
+            throw new IllegalStateException("Radius must not be negative");
+    }
+
+    /**
      * @methodtype constructor
      * @param phi phi value
      * @param theta theta value

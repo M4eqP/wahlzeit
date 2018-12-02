@@ -29,6 +29,17 @@ public class CartesianCoordinate extends AbstractCoordinate {
     private final double z;
 
     /**
+     * Checks whether object is in a valid state.
+     *
+     * @methodtype assertation
+     */
+    @Override
+    protected void assertClassInvariants() {
+        // inherit superclass's constraints
+        super.assertClassInvariants();
+    }
+
+    /**
      * @methodtype constructor
      * @param x x coordinate
      * @param y y coordinate
@@ -83,12 +94,18 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @methodtype conversion
      */
     public SphericCoordinate asSphericCoordinate() {
+        assertClassInvariants();
+
         // calculate radius, phi and theta values from own values
         double radius = Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
         double theta = Math.acos(z / radius);
         double phi = Math.atan2(y, x);
 
         // use these values to construct new SphericCoordinate
-        return new SphericCoordinate(phi, theta, radius);
+        SphericCoordinate result = new SphericCoordinate(phi, theta, radius);
+
+        assertClassInvariants();
+
+        return result;
     }
 }
