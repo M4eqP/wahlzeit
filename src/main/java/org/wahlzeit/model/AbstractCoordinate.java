@@ -36,6 +36,32 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
+     * Checks whether an object is null
+     *
+     * @param o object to test
+     * @throws NullPointerException if passed object is null
+     *
+     * @methodtype assertation
+     */
+    protected final void assertNotNull(Object o) {
+        if (o == null)
+            throw new NullPointerException("Object must not be null");
+    }
+
+    /**
+     * Checks whether an object is null
+     *
+     * @param d double to test
+     * @throws NullPointerException if passed object is null
+     *
+     * @methodtype assertation
+     */
+    protected final void assertNotNaN(Double d) {
+        if (Double.isNaN(d))
+            throw new IllegalArgumentException("Double must not be NaN");
+    }
+
+    /**
      * "Convert" object into CartesianCoordinate
      *
      * @methodtype conversion
