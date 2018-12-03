@@ -79,6 +79,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @return X value
      */
     public double getPhi() {
+        assertClassInvariants();
+
         return phi;
     }
 
@@ -88,6 +90,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @return Y value
      */
     public double getTheta() {
+        assertClassInvariants();
+
         return theta;
     }
 
@@ -97,6 +101,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @return Z value
      */
     public double getRadius() {
+        assertClassInvariants();
+
         return radius;
     }
 

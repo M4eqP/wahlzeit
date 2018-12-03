@@ -65,6 +65,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @return X value
      */
     public double getX() {
+        assertClassInvariants();
+
         return x;
     }
 
@@ -74,6 +76,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @return Y value
      */
     public double getY() {
+        assertClassInvariants();
+
         return y;
     }
 
@@ -83,6 +87,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @return Z value
      */
     public double getZ() {
+        assertClassInvariants();
+
         return z;
     }
 
