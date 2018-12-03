@@ -35,9 +35,6 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     @Override
     protected void assertClassInvariants() {
-        // inherit superclass's constraints
-        super.assertClassInvariants();
-
         // check whether radius is a non-negative floating point numbers
         if (radius < 0)
             throw new IllegalStateException("Radius must not be negative");

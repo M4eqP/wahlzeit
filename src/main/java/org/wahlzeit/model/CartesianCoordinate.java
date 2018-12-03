@@ -35,9 +35,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     @Override
     protected void assertClassInvariants() {
-        // inherit superclass's constraints
-        super.assertClassInvariants();
-
         assertNotNaN(x);
         assertNotNaN(y);
         assertNotNaN(z);
