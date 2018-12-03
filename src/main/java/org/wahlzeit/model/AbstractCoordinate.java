@@ -31,8 +31,7 @@ public abstract class AbstractCoordinate implements Coordinate {
     protected void assertClassInvariants() {
         // the abstract class doesn't store any state itself
         // the only check we could apply is to verify that the object can be compared to itself
-        if (!isEqual(this))
-            throw new IllegalStateException();
+        assertEqual(this, this);
     }
 
     /**
