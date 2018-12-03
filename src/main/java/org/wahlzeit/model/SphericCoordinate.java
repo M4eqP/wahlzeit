@@ -106,13 +106,19 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype conversion
      */
     public CartesianCoordinate asCartesianCoordinate() {
+        assertClassInvariants();
+
         // calculate x, y and z values from own values
         double x = radius * Math.sin(theta) * Math.cos(phi);
         double y = radius * Math.sin(theta) * Math.sin(phi);
         double z = radius * Math.cos(theta);
 
         // use these values to construct a new CartesianCoordinate
-        return new CartesianCoordinate(x, y ,z);
+        CartesianCoordinate result = new CartesianCoordinate(x, y ,z);
+
+        assertClassInvariants();
+
+        return result;
     }
 
     /**
