@@ -50,6 +50,11 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param radius radius value
      */
     public SphericCoordinate(double phi, double theta, double radius) {
+        // preconditions
+        assertNotNaN(phi);
+        assertNotNaN(theta);
+        assertNotNaN(radius);
+
         // validate the values are in correct ranges
         if (radius < 0)
             throw new IllegalArgumentException("radius must be positive value: " + radius);
