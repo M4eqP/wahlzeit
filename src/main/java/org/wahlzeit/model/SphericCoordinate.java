@@ -127,6 +127,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype conversion
      */
     public SphericCoordinate asSphericCoordinate() {
+        assertClassInvariants();
+
         // As we are in the SphericCoordinate class body, we can just return the current instance
         return this;
     }

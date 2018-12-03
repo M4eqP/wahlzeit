@@ -92,6 +92,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @methodtype conversion
      */
     public CartesianCoordinate asCartesianCoordinate() {
+        assertClassInvariants();
+
         // As we are in the CartesianCoordinate class body, we can just return the current instance
         return this;
     }
@@ -111,6 +113,11 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
         // use these values to construct new SphericCoordinate
         SphericCoordinate result = new SphericCoordinate(phi, theta, radius);
+
+        // post conditions
+        assertNotNaN(radius);
+        assertNotNaN(theta);
+        assertNotNaN(phi);
 
         assertClassInvariants();
 
