@@ -63,6 +63,8 @@ public class SphericCoordinate extends AbstractCoordinate {
         this.phi = phi;
         this.theta = theta;
         this.radius = radius;
+
+        assertClassInvariants();
     };
 
     /**

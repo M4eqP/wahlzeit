@@ -49,6 +49,8 @@ public class CartesianCoordinate extends AbstractCoordinate {
         this.x = x;
         this.y = y;
         this.z = z;
+
+        assertClassInvariants();
     };
 
     /**
