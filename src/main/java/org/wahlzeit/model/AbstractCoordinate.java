@@ -62,6 +62,20 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
+     * Checks whether two coordinates are equal.
+     *
+     * @param first first {@link Coordinate}
+     * @param second second {@link Coordinate}
+     * @throws IllegalArgumentException if o1 is not equal to o2
+     *
+     * @methodtype assertation
+     */
+    protected static void assertEqual(Coordinate first, Coordinate second) {
+        if (!first.isEqual(second))
+            throw new IllegalArgumentException("first doesn't match second");
+    }
+
+    /**
      * "Convert" object into CartesianCoordinate
      *
      * @methodtype conversion
