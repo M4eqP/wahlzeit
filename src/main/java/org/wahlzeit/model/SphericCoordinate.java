@@ -41,6 +41,10 @@ public class SphericCoordinate extends AbstractCoordinate {
         // check whether radius is a non-negative floating point numbers
         if (radius < 0)
             throw new IllegalStateException("Radius must not be negative");
+
+        assertNotNaN(phi);
+        assertNotNaN(theta);
+        assertNotNaN(radius);
     }
 
     /**
