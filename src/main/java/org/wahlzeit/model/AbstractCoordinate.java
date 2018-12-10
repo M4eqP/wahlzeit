@@ -130,6 +130,9 @@ public abstract class AbstractCoordinate implements Coordinate {
     public double getCartesianDistance(Coordinate other) {
         assertClassInvariants();
 
+        // preconditions
+        assertNotNull(other);
+
         // "normalize" both current and other object to cartesian coordinates, and compare the values
         // need a CartesianCoordinate to be able to access x, y, z values
         // also, the function call will implicitly reinterpret the original values into Cartesian coordinates
@@ -157,6 +160,9 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     public double getCentralAngle(Coordinate other) {
         assertClassInvariants();
+
+        // preconditions
+        assertNotNull(other);
 
         // convert current instance into SphericCoordinate, if necessary
         SphericCoordinate sphericThis = asSphericCoordinate();
