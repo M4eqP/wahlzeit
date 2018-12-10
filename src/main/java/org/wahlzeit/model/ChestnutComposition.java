@@ -43,7 +43,8 @@ public class ChestnutComposition {
      * @methodtype assertation
      */
     protected void assertNotNull(Object o) {
-        assert o != null;
+        if (o == null)
+            throw new NullPointerException("object must not be null");
     }
 
     /**
