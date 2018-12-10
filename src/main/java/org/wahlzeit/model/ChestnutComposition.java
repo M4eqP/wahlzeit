@@ -40,6 +40,20 @@ public class ChestnutComposition {
     private Orientation orientation;
 
     /**
+     * @methodtype assertation
+     */
+    protected void assertNotNull(Object o) {
+        assert o != null;
+    }
+
+    /**
+     * @methodtype assertation
+     */
+    protected void assertIsValidCount(int count) {
+        assert count >= 0;
+    }
+
+    /**
      * @methodtype constructor
      */
     public ChestnutComposition() {
@@ -51,6 +65,10 @@ public class ChestnutComposition {
      * @methodtype constructor
      */
     public ChestnutComposition(int count, Orientation orientation) {
+        // preconditions
+        assertNotNull(orientation);
+        assertIsValidCount(count);
+
         this.chestnutCount = count;
         this.orientation = orientation;
     }
