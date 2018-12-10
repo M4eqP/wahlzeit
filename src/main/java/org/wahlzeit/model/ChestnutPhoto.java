@@ -47,6 +47,9 @@ public class ChestnutPhoto extends Photo {
      * @methodtype set
      */
     public void setComposition(ChestnutComposition composition) {
+        // preconditions
+        assertNotNull(composition);
+
         this.composition = composition;
     }
 }

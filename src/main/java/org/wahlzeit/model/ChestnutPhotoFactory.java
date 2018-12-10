@@ -39,6 +39,9 @@ public class ChestnutPhotoFactory extends PhotoFactory {
      * @methodtype factory
      */
     public Photo createPhoto(PhotoId id) {
+        // preconditions
+        assertNotNull(id);
+
         return new ChestnutPhoto(id);
     }
 }

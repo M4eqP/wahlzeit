@@ -137,6 +137,20 @@ public class Photo extends DataObject {
 	Key parent = ObjectManager.applicationRootKey;
 
 	/**
+	 * @methodtype assertation
+	 */
+	protected void assertNotNull(Object o) {
+		assert o != null;
+	}
+
+	/**
+	 * @methodtype assertation
+	 */
+	protected void assertIsValidPraiseSum(int sum) {
+		assert sum > 0 && sum <= 10;
+	}
+
+	/**
 	 *
 	 */
 	public Photo() {
@@ -148,6 +162,9 @@ public class Photo extends DataObject {
 	 * @methodtype constructor
 	 */
 	public Photo(PhotoId myId) {
+		// preconditions
+		assertNotNull(myId);
+
 		id = myId;
 
 		incWriteCount();
@@ -157,6 +174,9 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public Image getImage(PhotoSize photoSize) {
+		// preconditions
+		assertNotNull(photoSize);
+
 		return images.get(photoSize);
 	}
 
@@ -164,6 +184,10 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setImage(PhotoSize photoSize, Image image) {
+		// preconditions
+		assertNotNull(photoSize);
+		assertNotNull(image);
+
 		this.images.put(photoSize, image);
 	}
 
@@ -192,6 +216,9 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setOwnerId(String newName) {
+		// preconditions
+		assertNotNull(newName);
+
 		ownerId = newName;
 		incWriteCount();
 	}
@@ -200,6 +227,9 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public String getSummary(ModelConfig cfg) {
+		// preconditions
+		assertNotNull(cfg);
+
 		return cfg.asPhotoSummary(ownerId);
 	}
 
@@ -207,6 +237,9 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public String getCaption(ModelConfig cfg) {
+		// preconditions
+		assertNotNull(cfg);
+
 		String ownerName = UserManager.getInstance().getUserById(ownerId).getNickName();
 		return cfg.asPhotoCaption(ownerName);
 	}
@@ -237,6 +270,9 @@ public class Photo extends DataObject {
 	 *
 	 */
 	public void setOwnerLanguage(Language newLanguage) {
+		// preconditions
+		assertNotNull(newLanguage);
+
 		ownerLanguage = newLanguage;
 		incWriteCount();
 	}
@@ -259,6 +295,9 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setOwnerEmailAddress(EmailAddress newEmailAddress) {
+		// preconditions
+		assertNotNull(newEmailAddress);
+
 		ownerEmailAddress = newEmailAddress;
 		incWriteCount();
 	}
@@ -316,6 +355,9 @@ public class Photo extends DataObject {
 	 * @methodtype boolean-query
 	 */
 	public boolean hasPhotoSize(PhotoSize size) {
+		// preconditions
+		assertNotNull(size);
+
 		return maxPhotoSize.asInt() >= size.asInt();
 	}
 
@@ -330,6 +372,9 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public String getPraiseAsString(ModelConfig cfg) {
+		// preconditions
+		assertNotNull(cfg);
+
 		return cfg.asPraiseString(getPraise());
 	}
 
@@ -344,7 +389,13 @@ public class Photo extends DataObject {
 	 *
 	 */
 	public void addToPraise(int value) {
-		praiseSum += value;
+		int newPraiseSum = praiseSum + value;
+
+		// preconditions
+		assertIsValidPraiseSum(newPraiseSum);
+
+		praiseSum = newPraiseSum;
+
 		noVotes += 1;
 		incWriteCount();
 	}
@@ -367,6 +418,9 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setStatus(PhotoStatus newStatus) {
+		// preconditions
+		assertNotNull(newStatus);
+
 		status = newStatus;
 		incWriteCount();
 	}
@@ -375,6 +429,9 @@ public class Photo extends DataObject {
 	 * @methodtype boolean-query
 	 */
 	public boolean hasTag(String tag) {
+		// preconditions
+		assertNotNull(tag);
+
 		return tags.hasTag(tag);
 	}
 
@@ -389,6 +446,9 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setTags(Tags newTags) {
+		// preconditions
+		assertNotNull(newTags);
+
 		tags = newTags;
 		incWriteCount();
 	}
@@ -406,6 +466,9 @@ public class Photo extends DataObject {
 	}
 
 	public void setEnding(String ending) {
+		// preconditions
+		assertNotNull(ending);
+
 		this.ending = ending;
 	}
 
@@ -435,6 +498,9 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setLocation(Location location) {
+		// preconditions
+		assertNotNull(location);
+
 		this.location = location;
 	}
 }

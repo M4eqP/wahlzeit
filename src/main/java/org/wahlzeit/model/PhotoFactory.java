@@ -28,6 +28,10 @@ import java.util.logging.Logger;
  * An Abstract Factory for creating photos and related objects.
  */
 public class PhotoFactory {
+	protected void assertNotNull(Object o) {
+		assert o != null;
+	}
+
 
 	/**
 	 * @methodtype constructor
@@ -49,6 +53,9 @@ public class PhotoFactory {
 	 * Creates a new photo with the specified id
 	 */
 	public Photo createPhoto(PhotoId id) {
+		// preconditions
+		assertNotNull(id);
+
 		return new Photo(id);
 	}
 
