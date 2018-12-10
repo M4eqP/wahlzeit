@@ -54,11 +54,21 @@ public class ChestnutComposition {
     }
 
     /**
+     * @methodtype assertation
+     */
+    protected void assertClassInvariants() {
+        assertNotNull(orientation);
+        assertIsValidCount(chestnutCount);
+    }
+
+    /**
      * @methodtype constructor
      */
     public ChestnutComposition() {
         chestnutCount = 0;
         orientation = Orientation.RANDOM;
+
+        assertClassInvariants();
     }
 
     /**
@@ -71,12 +81,16 @@ public class ChestnutComposition {
 
         this.chestnutCount = count;
         this.orientation = orientation;
+
+        assertClassInvariants();
     }
 
     /**
      * @methodtype get
      */
     public int getChestnutCount() {
+        assertClassInvariants();
+
         return chestnutCount;
     }
 
@@ -84,6 +98,8 @@ public class ChestnutComposition {
      * @methodtype get
      */
     public Orientation getOrientation() {
+        assertClassInvariants();
+
         return orientation;
     }
 }
