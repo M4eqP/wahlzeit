@@ -151,6 +151,29 @@ public class Photo extends DataObject {
 	}
 
 	/**
+	 * @methodtype assertation
+	 */
+	protected void assertIsValidWidthOrHeight(int i) {
+		assert i >= 0;
+	}
+
+	/**
+	 * @methodtype assertation
+	 */
+	protected void assertClassInvariants() {
+		assertNotNull(id);
+		assertNotNull(ownerId);
+		assertNotNull(ownerEmailAddress);
+		assertNotNull(ownerLanguage);
+		assertNotNull(ending);
+
+		assertIsValidPraiseSum(praiseSum);
+
+		assertIsValidWidthOrHeight(width);
+		assertIsValidWidthOrHeight(height);
+	}
+
+	/**
 	 *
 	 */
 	public Photo() {
@@ -168,12 +191,16 @@ public class Photo extends DataObject {
 		id = myId;
 
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype get
 	 */
 	public Image getImage(PhotoSize photoSize) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(photoSize);
 
@@ -184,17 +211,23 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setImage(PhotoSize photoSize, Image image) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(photoSize);
 		assertNotNull(image);
 
 		this.images.put(photoSize, image);
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype get
 	 */
 	public String getIdAsString() {
+		assertClassInvariants();
+
 		return id.asString();
 	}
 
@@ -202,6 +235,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public PhotoId getId() {
+		assertClassInvariants();
+
 		return id;
 	}
 
@@ -209,6 +244,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public String getOwnerId() {
+		assertClassInvariants();
+
 		return ownerId;
 	}
 
@@ -216,17 +253,23 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setOwnerId(String newName) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(newName);
 
 		ownerId = newName;
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype get
 	 */
 	public String getSummary(ModelConfig cfg) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(cfg);
 
@@ -237,6 +280,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public String getCaption(ModelConfig cfg) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(cfg);
 
@@ -248,6 +293,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public boolean getOwnerNotifyAboutPraise() {
+		assertClassInvariants();
+
 		return ownerNotifyAboutPraise;
 	}
 
@@ -255,6 +302,8 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setOwnerNotifyAboutPraise(boolean newNotifyAboutPraise) {
+		assertClassInvariants();
+
 		ownerNotifyAboutPraise = newNotifyAboutPraise;
 		incWriteCount();
 	}
@@ -263,6 +312,8 @@ public class Photo extends DataObject {
 	 *
 	 */
 	public Language getOwnerLanguage() {
+		assertClassInvariants();
+
 		return ownerLanguage;
 	}
 
@@ -270,17 +321,23 @@ public class Photo extends DataObject {
 	 *
 	 */
 	public void setOwnerLanguage(Language newLanguage) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(newLanguage);
 
 		ownerLanguage = newLanguage;
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype boolean-query
 	 */
 	public boolean hasSameOwner(Photo photo) {
+		assertClassInvariants();
+
 		return photo.getOwnerEmailAddress().equals(ownerEmailAddress);
 	}
 
@@ -288,6 +345,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public EmailAddress getOwnerEmailAddress() {
+		assertClassInvariants();
+
 		return ownerEmailAddress;
 	}
 
@@ -295,17 +354,23 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setOwnerEmailAddress(EmailAddress newEmailAddress) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(newEmailAddress);
 
 		ownerEmailAddress = newEmailAddress;
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype get
 	 */
 	public int getWidth() {
+		assertClassInvariants();
+
 		return width;
 	}
 
@@ -313,6 +378,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public int getHeight() {
+		assertClassInvariants();
+
 		return height;
 	}
 
@@ -320,6 +387,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public int getThumbWidth() {
+		assertClassInvariants();
+
 		return isWiderThanHigher() ? MAX_THUMB_PHOTO_WIDTH : (width * MAX_THUMB_PHOTO_HEIGHT / height);
 	}
 
@@ -327,6 +396,8 @@ public class Photo extends DataObject {
 	 * @methodtype boolean-query
 	 */
 	public boolean isWiderThanHigher() {
+		assertClassInvariants();
+
 		return (height * MAX_PHOTO_WIDTH) < (width * MAX_PHOTO_HEIGHT);
 	}
 
@@ -334,6 +405,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public int getThumbHeight() {
+		assertClassInvariants();
+
 		return isWiderThanHigher() ? (height * MAX_THUMB_PHOTO_WIDTH / width) : MAX_THUMB_PHOTO_HEIGHT;
 	}
 
@@ -341,12 +414,16 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setWidthAndHeight(int newWidth, int newHeight) {
+		assertClassInvariants();
+
 		width = newWidth;
 		height = newHeight;
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
@@ -355,6 +432,8 @@ public class Photo extends DataObject {
 	 * @methodtype boolean-query
 	 */
 	public boolean hasPhotoSize(PhotoSize size) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(size);
 
@@ -365,6 +444,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public PhotoSize getMaxPhotoSize() {
+		assertClassInvariants();
+
 		return maxPhotoSize;
 	}
 
@@ -372,6 +453,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public String getPraiseAsString(ModelConfig cfg) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(cfg);
 
@@ -382,6 +465,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public double getPraise() {
+		assertClassInvariants();
+
 		return (double) praiseSum / noVotes;
 	}
 
@@ -389,6 +474,8 @@ public class Photo extends DataObject {
 	 *
 	 */
 	public void addToPraise(int value) {
+		assertClassInvariants();
+
 		int newPraiseSum = praiseSum + value;
 
 		// preconditions
@@ -398,12 +485,16 @@ public class Photo extends DataObject {
 
 		noVotes += 1;
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype boolean-query
 	 */
 	public boolean isVisible() {
+		assertClassInvariants();
+
 		return status.isDisplayable();
 	}
 
@@ -411,6 +502,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public PhotoStatus getStatus() {
+		assertClassInvariants();
+
 		return status;
 	}
 
@@ -418,17 +511,23 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setStatus(PhotoStatus newStatus) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(newStatus);
 
 		status = newStatus;
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype boolean-query
 	 */
 	public boolean hasTag(String tag) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(tag);
 
@@ -439,6 +538,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public Tags getTags() {
+		assertClassInvariants();
+
 		return tags;
 	}
 
@@ -446,36 +547,50 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setTags(Tags newTags) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(newTags);
 
 		tags = newTags;
 		incWriteCount();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype get
 	 */
 	public long getCreationTime() {
+		assertClassInvariants();
+
 		return creationTime;
 	}
 
 
 	public String getEnding() {
+		assertClassInvariants();
+
 		return ending;
 	}
 
 	public void setEnding(String ending) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(ending);
 
 		this.ending = ending;
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype boolean query
 	 */
 	public boolean hasNewPraise() {
+		assertClassInvariants();
+
 		return noVotes > noVotesAtLastNotification;
 	}
 
@@ -483,6 +598,8 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setNoNewPraise() {
+		assertClassInvariants();
+
 		noVotesAtLastNotification = noVotes;
 		incWriteCount();
 	}
@@ -491,6 +608,8 @@ public class Photo extends DataObject {
 	 * @methodtype get
 	 */
 	public Location getLocation() {
+		assertClassInvariants();
+
 		return this.location;
 	}
 
@@ -498,6 +617,8 @@ public class Photo extends DataObject {
 	 * @methodtype set
 	 */
 	public void setLocation(Location location) {
+		assertClassInvariants();
+
 		// preconditions
 		assertNotNull(location);
 
