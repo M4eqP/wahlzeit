@@ -33,12 +33,16 @@ public class ChestnutPhotoManager extends PhotoManager {
     public ChestnutPhotoManager(PhotoFactory factory) {
         super(factory);
         photoTagCollector = factory.createPhotoTagCollector();
+
+		assertClassInvariants();
     }
 
     /**
      * @methodtype factory
      */
     public Photo getPhotoFromId(PhotoId id) {
+		assertClassInvariants();
+
         if (id == null) {
             return null;
         }
@@ -52,6 +56,8 @@ public class ChestnutPhotoManager extends PhotoManager {
             }
         }
 
+		assertClassInvariants();
+
         return result;
     }
 
@@ -61,6 +67,8 @@ public class ChestnutPhotoManager extends PhotoManager {
      * Load all persisted photos. Executed when Wahlzeit is restarted.
      */
     public void loadPhotos() {
+		assertClassInvariants();
+
         Collection<ChestnutPhoto> existingPhotos = ObjectifyService.run(new Work<Collection<ChestnutPhoto>>() {
             @Override
             public Collection<ChestnutPhoto> run() {
@@ -83,5 +91,7 @@ public class ChestnutPhotoManager extends PhotoManager {
         }
 
         log.info(LogBuilder.createSystemMessage().addMessage("All photos loaded.").toString());
+
+		assertClassInvariants();
     }
 }

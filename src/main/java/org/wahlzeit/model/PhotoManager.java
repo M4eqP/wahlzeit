@@ -61,6 +61,21 @@ public class PhotoManager extends ObjectManager {
 	protected PhotoTagCollector photoTagCollector = null;
 
 	/**
+	 * @methodtype assertation
+	 */
+	protected void assertNotNull(Object o) {
+		assert o != null;
+	}
+
+	/**
+	 * @methodtype assertation
+	 */
+	protected void assertClassInvariants() {
+		assertNotNull(photoFactory);
+		assertNotNull(photoTagCollector);
+	}
+
+	/**
 	 * @methodtype constructor
 	 *
 	 * package-local constructor to force users to use the SingletonManager
@@ -68,17 +83,27 @@ public class PhotoManager extends ObjectManager {
 	 * using dependency injection to allow unit test to create new instances of PhotoManager and PhotoFactory
 	 */
 	PhotoManager(PhotoFactory factory) {
-		if (factory == null)
+		try {
+			assertNotNull(factory);
+		} catch (AssertionError e) {
 			throw new IllegalArgumentException("factory must not be null");
+		}
 
 		photoFactory = factory;
 		photoTagCollector = factory.createPhotoTagCollector();
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype boolean-query
 	 */
 	public final boolean hasPhoto(String id) {
+		assertClassInvariants();
+
+		// preconditions
+		assertNotNull(id);
+
 		return hasPhoto(PhotoId.getIdFromString(id));
 	}
 
@@ -86,6 +111,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype boolean-query
 	 */
 	public final boolean hasPhoto(PhotoId id) {
+		assertClassInvariants();
+
 		return getPhoto(id) != null;
 	}
 
@@ -93,6 +120,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype factory
 	 */
 	public final Photo getPhoto(PhotoId id) {
+		assertClassInvariants();
+
 		return getPhotoFromId(id);
 	}
 
@@ -100,6 +129,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype factory
 	 */
 	public Photo getPhotoFromId(PhotoId id) {
+		assertClassInvariants();
+
 		if (id == null) {
 			return null;
 		}
@@ -121,6 +152,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodproperties primitive
 	 */
 	protected Photo doGetPhotoFromId(PhotoId id) {
+		assertClassInvariants();
+
 		return photoCache.get(id);
 	}
 
@@ -129,6 +162,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodproperties primitive
 	 */
 	protected void doAddPhoto(Photo myPhoto) {
+		assertClassInvariants();
+
 		photoCache.put(myPhoto.getId(), myPhoto);
 	}
 
@@ -136,6 +171,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype get
 	 */
 	public final Photo getPhoto(String id) {
+		assertClassInvariants();
+
 		return getPhoto(PhotoId.getIdFromString(id));
 	}
 
@@ -143,7 +180,11 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype init Loads all Photos from the Datastore and holds them in the cache
 	 */
 	public void init() {
+		assertClassInvariants();
+
 		loadPhotos();
+
+		assertClassInvariants();
 	}
 
 	/**
@@ -152,6 +193,8 @@ public class PhotoManager extends ObjectManager {
 	 * Load all persisted photos. Executed when Wahlzeit is restarted.
 	 */
 	public void loadPhotos() {
+		assertClassInvariants();
+
 		Collection<Photo> existingPhotos = ObjectifyService.run(new Work<Collection<Photo>>() {
 			@Override
 			public Collection<Photo> run() {
@@ -174,6 +217,8 @@ public class PhotoManager extends ObjectManager {
 		}
 
 		log.info(LogBuilder.createSystemMessage().addMessage("All photos loaded.").toString());
+
+		assertClassInvariants();
 	}
 
 	/**
@@ -181,6 +226,8 @@ public class PhotoManager extends ObjectManager {
 	 * @methodproperty primitive
 	 */
 	protected boolean doHasPhoto(PhotoId id) {
+		assertClassInvariants();
+
 		return photoCache.containsKey(id);
 	}
 
@@ -190,6 +237,8 @@ public class PhotoManager extends ObjectManager {
 	 * Loads all scaled Images of this Photo from Google Cloud Storage
 	 */
 	protected void loadScaledImages(Photo photo) {
+		assertClassInvariants();
+
 		String photoIdAsString = photo.getId().asString();
 		ImageStorage imageStorage = ImageStorage.getInstance();
 
@@ -215,13 +264,19 @@ public class PhotoManager extends ObjectManager {
 						addParameter("Size does not exist", photoSize.asString()).toString());
 			}
 		}
+
+		assertClassInvariants();
 	}
 
 	/**
 	 *
 	 */
 	public void savePhoto(Photo photo) {
+		assertClassInvariants();
+
 		updateObject(photo);
+
+		assertClassInvariants();
 	}
 
 	@Override
@@ -240,7 +295,12 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype helper
 	 */
 	public List<Tag> addTagsThatMatchCondition(List<Tag> tags, String condition) {
+		assertClassInvariants();
+
 		readObjects(tags, Tag.class, Tag.TEXT, condition);
+
+		assertClassInvariants();
+
 		return tags;
 	}
 
@@ -251,6 +311,8 @@ public class PhotoManager extends ObjectManager {
 	 * the Datastore, it is simply not persisted.
 	 */
 	protected void saveScaledImages(Photo photo) {
+		assertClassInvariants();
+
 		String photoIdAsString = photo.getId().asString();
 		ImageStorage imageStorage = ImageStorage.getInstance();
 		PhotoSize photoSize;
@@ -276,6 +338,8 @@ public class PhotoManager extends ObjectManager {
 				moreSizesExist = false;
 			}
 		} while (it < PhotoSize.values().length && moreSizesExist);
+
+		assertClassInvariants();
 	}
 
 	/**
@@ -283,6 +347,8 @@ public class PhotoManager extends ObjectManager {
 	 * the photo to the datastore.
 	 */
 	protected void updateTags(Photo photo) {
+		assertClassInvariants();
+
 		// delete all existing tags, for the case that some have been removed
 		deleteObjects(Tag.class, Tag.PHOTO_ID, photo.getId().asString());
 
@@ -294,19 +360,27 @@ public class PhotoManager extends ObjectManager {
 			log.config(LogBuilder.createSystemMessage().addParameter("Writing Tag", tag.asString()).toString());
 			writeObject(tag);
 		}
+
+		assertClassInvariants();
 	}
 
 	/**
 	 *
 	 */
 	public void savePhotos() throws IOException{
+		assertClassInvariants();
+
 		updateObjects(photoCache.values());
+
+		assertClassInvariants();
 	}
 
 	/**
 	 * @methodtype get
 	 */
 	public Map<PhotoId, Photo> getPhotoCache() {
+		assertClassInvariants();
+
 		return photoCache;
 	}
 
@@ -314,6 +388,8 @@ public class PhotoManager extends ObjectManager {
 	 *
 	 */
 	public Set<Photo> findPhotosByOwner(String ownerName) {
+		assertClassInvariants();
+
 		Set<Photo> result = new HashSet<Photo>();
 		readObjects(result, Photo.class, Photo.OWNER_ID, ownerName);
 
@@ -328,6 +404,8 @@ public class PhotoManager extends ObjectManager {
 	 *
 	 */
 	public Photo getVisiblePhoto(PhotoFilter filter) {
+		assertClassInvariants();
+
 		filter.generateDisplayablePhotoIds();
 		return getPhotoFromId(filter.getRandomDisplayablePhotoId());
 	}
@@ -336,9 +414,14 @@ public class PhotoManager extends ObjectManager {
 	 *
 	 */
 	public Photo createPhoto(String filename, Image uploadedImage) throws Exception {
+		assertClassInvariants();
+
 		PhotoId id = PhotoId.getNextId();
 		Photo result = PhotoUtil.createPhoto(filename, id, uploadedImage);
 		addPhoto(result);
+
+		assertClassInvariants();
+
 		return result;
 	}
 
@@ -346,11 +429,15 @@ public class PhotoManager extends ObjectManager {
 	 * @methodtype command
 	 */
 	public void addPhoto(Photo photo) throws IOException {
+		assertClassInvariants();
+
 		PhotoId id = photo.getId();
 		assertIsNewPhoto(id);
 		doAddPhoto(photo);
 
 		GlobalsManager.getInstance().saveGlobals();
+
+		assertClassInvariants();
 	}
 
 	/**
