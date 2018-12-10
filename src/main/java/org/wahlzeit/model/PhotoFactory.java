@@ -28,10 +28,12 @@ import java.util.logging.Logger;
  * An Abstract Factory for creating photos and related objects.
  */
 public class PhotoFactory {
+	/**
+	 * @methodtype assertation
+	 */
 	protected void assertNotNull(Object o) {
 		assert o != null;
 	}
-
 
 	/**
 	 * @methodtype constructor
