@@ -148,14 +148,16 @@ public class Photo extends DataObject {
 	 * @methodtype assertation
 	 */
 	protected void assertIsValidPraiseSum(int sum) {
-		assert sum > 0 && sum <= 10;
+		if (sum <= 0 || sum > 10)
+			throw new IllegalArgumentException("praise sum must be 0 < sum <= 10");
 	}
 
 	/**
 	 * @methodtype assertation
 	 */
 	protected void assertIsValidWidthOrHeight(int i) {
-		assert i >= 0;
+		if (i < 0)
+			throw new IllegalArgumentException("width or height may not be negative");
 	}
 
 	/**
