@@ -22,11 +22,18 @@ package org.wahlzeit.model;
 public class ChestnutPhoto extends Photo {
     private ChestnutComposition composition = null;
 
+    protected void assertSubClassInvariants() {
+        assertNotNull(composition);
+    }
+
     /**
      * @methodtype constructor
      */
     public ChestnutPhoto() {
         super();
+
+        assertClassInvariants();
+        assertSubClassInvariants();
     }
 
     /**
@@ -34,12 +41,18 @@ public class ChestnutPhoto extends Photo {
      */
     public ChestnutPhoto(PhotoId id) {
         super(id);
+
+        assertClassInvariants();
+        assertSubClassInvariants();
     }
 
     /**
      * @methodtype get
      */
     public ChestnutComposition getComposition() {
+        assertClassInvariants();
+        assertSubClassInvariants();
+
         return composition;
     }
 
@@ -47,9 +60,15 @@ public class ChestnutPhoto extends Photo {
      * @methodtype set
      */
     public void setComposition(ChestnutComposition composition) {
+        assertClassInvariants();
+        assertSubClassInvariants();
+
         // preconditions
         assertNotNull(composition);
 
         this.composition = composition;
+
+        assertClassInvariants();
+        assertSubClassInvariants();
     }
 }
