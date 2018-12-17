@@ -15,10 +15,15 @@ public class CartesianCoordinateTest {
 
         assertTrue(c1a.equals(c1b));
         assertTrue(c1b.equals(c1a));
+
+        // checks value object semantics
+        assertTrue(c1a == c1b);
         
         CartesianCoordinate c2 = Coordinate.getCartesianCoordinate(1, 1, 1);
         assertFalse(c1a.equals(c2));
         assertFalse(c2.equals(c1b));
+
+        assertTrue(c1a != c2);
     }
     
     @Test
