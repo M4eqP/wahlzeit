@@ -50,7 +50,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param theta theta value
      * @param radius radius value
      */
-    public SphericCoordinate(double phi, double theta, double radius) {
+    SphericCoordinate(final double phi, final double theta, final double radius) {
         // preconditions
         assertNotNaN(phi);
         assertNotNaN(theta);

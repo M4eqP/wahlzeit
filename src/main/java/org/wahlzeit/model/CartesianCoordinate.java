@@ -46,7 +46,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @param y y coordinate
      * @param z z coordinate
      */
-    public CartesianCoordinate(double x, double y, double z) {
+    CartesianCoordinate(final double x, final double y, final double z) {
         // preconditions
         assertNotNaN(x);
         assertNotNaN(y);

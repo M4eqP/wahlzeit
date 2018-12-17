@@ -117,12 +117,28 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     /**
      * @methodtype boolean-query
-     * Checks whether two coordinates are equal.
-     * @param other another CartesianCoordinate
-     * @return true if both are equal, false otherwise
+     * Checks whether an arbitrary object is a Coordinate, and is equal to this coordinate.
+     * @param other comparison object
+     * @return true if other is Coordinate and is equal to this one, false otherwise
      */
-    public boolean equals(Coordinate other) {
-        return isEqual(other);
+    public final boolean equals(Object other) {
+        assertClassInvariants();
+
+        // as objects derived from AbstractCoordinate objects are shared objects (i.e., they're cached and re-used),
+        // it's enough to compare the object hashes to ensure equality.
+        boolean result = (other == this);
+
+        assertClassInvariants();
+
+        return result;
+    }
+
+    /**
+     * Calculate unique hash code for current instance.
+     * @return unique hash code for this instance
+     */
+    public int hashCode() {
+        return super.hashCode();
     }
 
     /**

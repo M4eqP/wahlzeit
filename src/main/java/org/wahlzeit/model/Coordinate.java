@@ -47,4 +47,23 @@ interface Coordinate {
      * @methodtype boolean-query
      */
     boolean isEqual(Coordinate other);
+
+    /**
+     * @methodtype boolean-query
+     */
+    boolean equals(Object other);
+
+    /**
+     * @methodtype factory
+     */
+    static CartesianCoordinate getCartesianCoordinate(final int x, final int y, final int z) {
+        return CoordinateService.getCartesianCoordinate(x, y, z);
+    }
+
+    /**
+     * @methodtype factory
+     */
+    static SphericCoordinate getSphericCoordinate(final int phi, final int theta, final int radius) {
+        return CoordinateService.getSphericCoordinate(phi, theta, radius);
+    }
 }
