@@ -7,8 +7,8 @@ import static org.junit.Assert.*;
 public class CartesianCoordinateTest {
     @Test
     public void testEquals() {
-        CartesianCoordinate c1a = new CartesianCoordinate(0, 0, 0);
-        CartesianCoordinate c1b = new CartesianCoordinate(0, 0, 0);
+        CartesianCoordinate c1a = Coordinate.getCartesianCoordinate(0, 0, 0);
+        CartesianCoordinate c1b = Coordinate.getCartesianCoordinate(0, 0, 0);
 
         assertTrue(c1a.equals(c1a));
         assertTrue(c1b.equals(c1b));

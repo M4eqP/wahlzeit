@@ -93,7 +93,9 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @return if other CartesianCoordinate is equal with this one
      */
     @Override
-    public boolean isEqual(Coordinate other) {
+    public final boolean isEqual(Coordinate other) {
+        assertClassInvariants();
+
         // "normalize" both current and other object to cartesian coordinates, and compare the values
         // need a CartesianCoordinate to be able to access x, y, z values
         // also, the function call will implicitly reinterpret the original values into Cartesian coordinates
@@ -106,7 +108,11 @@ public abstract class AbstractCoordinate implements Coordinate {
         double yDiff = Math.abs(cartesianOther.getY() - cartesianThis.getY());
         double zDiff = Math.abs(cartesianOther.getZ() - cartesianThis.getZ());
 
-        return (xDiff + yDiff + zDiff) < threshold;
+        boolean result = (xDiff + yDiff + zDiff) < threshold;
+
+        assertClassInvariants();
+
+        return result;
     }
 
     /**
