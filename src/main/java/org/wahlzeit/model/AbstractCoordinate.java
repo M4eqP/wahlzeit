@@ -127,7 +127,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param other another Coordinate
      * @return distance between current and other coordinate
      */
-    public double getCartesianDistance(Coordinate other) {
+    public final double getCartesianDistance(Coordinate other) {
         assertClassInvariants();
 
         // preconditions
@@ -158,9 +158,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param other another Coordinate
      * @return central angle between current and other coordinate
      */
-    public double getCentralAngle(Coordinate other) {
-        assertClassInvariants();
-
+    public final double getCentralAngle(Coordinate other) {
         // preconditions
         assertNotNull(other);
 
