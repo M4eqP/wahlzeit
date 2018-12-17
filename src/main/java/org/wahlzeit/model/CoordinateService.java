@@ -45,7 +45,7 @@ class CoordinateService {
     /**
      * @methodtype factory
      */
-    public static SphericCoordinate getSphericCoordinate(final int phi, final int theta, final int radius) {
+    public static SphericCoordinate getSphericCoordinate(final double phi, final double theta, final double radius) {
         // create a new, temporary instance that can be used to look up the cache
         SphericCoordinate temp = new SphericCoordinate(phi, theta, radius);
 

@@ -63,7 +63,7 @@ interface Coordinate {
     /**
      * @methodtype factory
      */
-    static SphericCoordinate getSphericCoordinate(final int phi, final int theta, final int radius) {
+    static SphericCoordinate getSphericCoordinate(final double phi, final double theta, final double radius) {
         return CoordinateService.getSphericCoordinate(phi, theta, radius);
     }
 }
