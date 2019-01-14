@@ -19,6 +19,20 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
+@PatternInstance(
+	name = "FactoryMethod",
+	participants = {
+		"Product"
+	}
+)
+@PatternInstance(
+    name = "DependencyInjection",
+    participants = {
+        "Service"
+    }
+)
 public class ChestnutPhotoFactory extends PhotoFactory {
     /**
      * @methodtype constructor

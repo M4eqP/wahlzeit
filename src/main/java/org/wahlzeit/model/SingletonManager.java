@@ -21,6 +21,7 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
@@ -31,6 +32,30 @@ import java.util.logging.Logger;
  * Also allows unit tests to create several instances of singleton-like classes, while external users have to use the
  * getXXXinstance() methods of this class to create and get instances.
  */
+@PatternInstance(
+    name = "Singleton",
+    participants = {
+        "Singleton",
+    }
+)
+@PatternInstance(
+    name = "FactoryMethod",
+    participants = {
+        "Creator"
+    }
+)
+@PatternInstance(
+	name = "DependencyInjection",
+	participants = {
+		"Injector"
+	}
+)
+@PatternInstance(
+	name = "Lazy",
+	participants = {
+		"Injector"
+	}
+)
 public class SingletonManager {
     private static final Logger log = Logger.getLogger(SingletonManager.class.getName());
 

@@ -19,9 +19,17 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 /**
  * Represents cartesian coordinate.
  */
+@PatternInstance(
+    name = "ChainOfResponsibility",
+    participants = {
+        "Receiver"
+    }
+)
 public class SphericCoordinate extends AbstractCoordinate {
     // cartesian coordinates
     private final double phi;

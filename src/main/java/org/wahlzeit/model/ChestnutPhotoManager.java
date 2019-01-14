@@ -22,10 +22,23 @@ package org.wahlzeit.model;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@PatternInstance(
+	name = "FactoryMethod",
+	participants = {
+		"Product"
+	}
+)
+@PatternInstance(
+	name = "DependencyInjection",
+	participants = {
+		"Client"
+	}
+)
 public class ChestnutPhotoManager extends PhotoManager {
     /**
      * @methodtype constructor

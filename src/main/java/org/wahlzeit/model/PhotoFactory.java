@@ -21,12 +21,25 @@
 package org.wahlzeit.model;
 
 import org.wahlzeit.services.LogBuilder;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 
 /**
  * An Abstract Factory for creating photos and related objects.
  */
+@PatternInstance(
+	name = "FactoryMethod",
+	participants = {
+		"Product"
+	}
+)
+@PatternInstance(
+    name = "DependencyInjection",
+    participants = {
+        "Service"
+    }
+)
 public class PhotoFactory {
 	/**
 	 * @methodtype assertation

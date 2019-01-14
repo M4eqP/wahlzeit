@@ -19,9 +19,17 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.utils.PatternInstance;
+
 /**
  * Implements common functionality shared between different types of coordinates.
  */
+@PatternInstance(
+    name = "ChainOfResponsibility",
+    participants = {
+        "Handler"
+    }
+)
 public abstract class AbstractCoordinate implements Coordinate {
     /**
      * Checks whether object is in a valid state.
