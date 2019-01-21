@@ -23,21 +23,8 @@ package org.wahlzeit.model;
  * Describes the composition of chestnuts on a picture.
  */
 public class ChestnutComposition {
-    /**
-     * Describes the orientation of chestnuts towards the camera.
-     *
-     * RANDOM shall be used if they don't share the same orientation.
-     */
-    public enum Orientation {
-        RANDOM,
-        TOP,
-        BOTTOM,
-        FRONT,
-        REAR,
-    }
-
     private int chestnutCount;
-    private Orientation orientation;
+    private ChestnutCompositionType type;
 
     /**
      * @methodtype assertation
@@ -58,30 +45,21 @@ public class ChestnutComposition {
      * @methodtype assertation
      */
     protected void assertClassInvariants() {
-        assertNotNull(orientation);
+        assertNotNull(type);
         assertIsValidCount(chestnutCount);
     }
 
     /**
+     * Package-local
      * @methodtype constructor
      */
-    public ChestnutComposition() {
-        chestnutCount = 0;
-        orientation = Orientation.RANDOM;
-
-        assertClassInvariants();
-    }
-
-    /**
-     * @methodtype constructor
-     */
-    public ChestnutComposition(int count, Orientation orientation) {
+    ChestnutComposition(ChestnutCompositionType type, int chestnutCount) {
         // preconditions
-        assertNotNull(orientation);
-        assertIsValidCount(count);
+        assertNotNull(type);
+        assertIsValidCount(chestnutCount);
 
-        this.chestnutCount = count;
-        this.orientation = orientation;
+        this.type = type;
+        this.chestnutCount = chestnutCount;
 
         assertClassInvariants();
     }
@@ -98,9 +76,9 @@ public class ChestnutComposition {
     /**
      * @methodtype get
      */
-    public Orientation getOrientation() {
+    public ChestnutCompositionType getType() {
         assertClassInvariants();
 
-        return orientation;
+        return type;
     }
 }

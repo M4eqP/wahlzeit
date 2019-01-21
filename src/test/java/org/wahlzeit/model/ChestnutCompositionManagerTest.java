@@ -23,16 +23,11 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertSame;
 
-public class ChestnutCompositionTest {
-    /**
-     * Tests value constructor
-     */
+public class ChestnutCompositionManagerTest {
     @Test
-    public void testValueConstructor() {
-        ChestnutCompositionType type = new ChestnutCompositionType(ChestnutCompositionType.Orientation.REAR);
-
-        ChestnutComposition composition = new ChestnutComposition(type, 10);
+    public void testGetInstance() {
+        ChestnutComposition composition = ChestnutCompositionManager.getInstance(10, ChestnutCompositionType.Orientation.REAR);
         assertSame(composition.getChestnutCount(), 10);
-        assertSame(composition.getType(), type);
+        assertSame(composition.getType().getOrientation(), ChestnutCompositionType.Orientation.REAR);
     }
 }
