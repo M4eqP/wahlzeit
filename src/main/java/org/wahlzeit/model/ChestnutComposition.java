@@ -21,6 +21,29 @@ package org.wahlzeit.model;
 
 /**
  * Describes the composition of chestnuts on a picture.
+ *
+ *
+ * +-----------------+
+ * | Object creation |
+ * +-----------------+
+ *
+ * Method call tree:
+ * -----------------
+ *
+ * ChestnutCompositionManager.getInstance(int count, ChestnutCompositionType.Orientation orientation)
+ * -> type = ChestnutCompositionType.getChestnutCompositionType(orientation)
+ * -> new ChestnutComposition(count, type)
+ *
+ *
+ * Classification via object creation table:
+ * -----------------------------------------
+ *
+ * 1. Delegation: separate-object
+ * 2. Selection: by-subclassing
+ * 3. Configuration: in-code
+ * 4. Instantiation: by-class-object
+ * 5. Initialization: default
+ * 6. Building: default
  */
 public class ChestnutComposition {
     private int chestnutCount;

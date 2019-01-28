@@ -19,6 +19,39 @@
 
 package org.wahlzeit.model;
 
+/**
+ * Custom photo class, using the related other custom classes, and adding some design-by-contract checks.
+ *
+ *
+ * +-----------------+
+ * | Object creation |
+ * +-----------------+
+ *
+ * Method call tree:
+ * -----------------
+ *
+ * SingletonManager.getPhotoFactory()
+ * -> ChestnutPhotoFactory.createPhoto(PhotoId)
+ *    -> new ChestnutPhoto(id)
+ *
+ * Initialization of ChestnutPhotoFactory:
+ * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * SingletonManager.getPhotoManager()
+ * -> photoFactory = SingletonManager.getPhotoFactory()
+ * -> new ChestnutPhotoManager(photoFactory)
+ *    -> SingletonManager.getPhotoFactory()
+ *
+ *
+ * Classification via object creation table:
+ * -----------------------------------------
+ *
+ * 1. Delegation: separate-object
+ * 2. Selection: by-subclassing
+ * 3. Configuration: in-code
+ * 4. Instantiation: in-code
+ * 5. Initialization: by-fixed-signature
+ * 6. Building: default
+ */
 public class ChestnutPhoto extends Photo {
     private ChestnutComposition composition = null;
 
